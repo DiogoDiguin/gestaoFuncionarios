@@ -1,10 +1,10 @@
 package br.unaerp.testesoftware;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import br.unaerp.testesoftware.ResultSetPrinter;
@@ -13,12 +13,16 @@ public class App {
 
 	public static void main(String[] args) throws SQLException {
 		
-		ResultSetPrinter rsp = new ResultSetPrinter();
+		/*ResultSetPrinter rsp = new ResultSetPrinter();
 		
 		FuncionarioDAO dao = new FuncionarioDAO();
 		Funcionario func1 = new Funcionario();
 		
+		RegiaoDAO daoR = new RegiaoDAO();
+		Regiao reg1 = new Regiao();*/
+		
 		Scanner scannerOpcao = new Scanner(System.in);
+		Scanner scannerOperacao = new Scanner(System.in);
 		Scanner entradaInclude = new Scanner(System.in);
 		Scanner entradaIncludeFloat = new Scanner(System.in);
 		
@@ -29,84 +33,131 @@ public class App {
 		Scanner entradaIdDelete = new Scanner(System.in);
 		
 			int opcao = 0;
+			int opcaoOperacao = 0;
 
-			while (opcao <= 4){
-			     System.out.println("===== MENU =====");
-			     System.out.println("1 - INCLUIR FUNCIONÁRIO");
-			     System.out.println("2 - EXIBIR TODOS OS FUNCIONÁRIOS");
-			     System.out.println("3 - ATUALIZAR FUNCIONÁRIO");
-			     System.out.println("4 - APAGAR FUNCIONÁRIO");
-			     System.out.print("Digite uma opção: ");
-			     opcao = scannerOpcao.nextInt();
-
-			     switch (opcao) {
-			        case 1:	            	
-			        	System.out.printf("%n");
-			        	System.out.println("1 - INCLUIR FUNCIONÁRIO");
-			        	
-			        	System.out.println("Digite o NOME: ");
-			        	String Pnome = entradaInclude.nextLine();
-			        	
-			        	
-			            System.out.println("Digite o E-MAIL: ");
-			            String Unome = entradaInclude.nextLine();
-			            
-			            
-			            System.out.println("Digite o ENDERECO: ");
-			            float salario = entradaIncludeFloat.nextFloat();
-			            
-			            func1.setPrimeiroNome(Pnome);
-			            func1.setUltimoNome(Unome);
-			            func1.setSalario(salario);
-
-			            dao.insert(func1);
-			            System.out.println("-");
-			            break;
-			        case 2:
-			        	System.out.printf("%n");
-			        	System.out.println("2 - EXIBIR TODOS OS FUNCIONÁRIOS");
-			        	
-			        	dao.getAll();
-			            break;
-			        case 3:
-			        	System.out.printf("%n");
-			            System.out.println("3 - ATUALIZAR FUNCIONÁRIO");
-			            dao.getAll();
-			            
-			            System.out.println("Digite o ID: ");
-			        	Long id = entradaIdUpdate.nextLong();
-			        	func1.setIdFuncionario(id);
-			        	
-			        	System.out.println("Digite o 1º NOME: ");
-			        	String NovoPnome = entradaUpdateStrings.nextLine();
-			        	func1.setPrimeiroNome(NovoPnome);
-			        	
-			            System.out.println("Digite o 2º NOME: ");
-			            String NovoUnome = entradaUpdateStrings.nextLine();
-			            func1.setUltimoNome(NovoUnome);
-			            
-			            System.out.println("Digite o SALÁRIO: ");
-			            Float NovoSalario = entradaUpdateFloat.nextFloat();
-			            func1.setSalario(NovoSalario);
-			            
-			        	dao.update(func1);
-			            break;
-			        case 4:
-			        	System.out.printf("%n");
-			        	System.out.println("4 - APAGAR FUNCIONÁRIO");
-			        	dao.getAll();
-			        	System.out.println("Digite o ID: ");
-			        	Long idDelete = entradaIdDelete.nextLong();
-			        	func1.setIdFuncionario(idDelete);
-			        	
-			        	dao.delete(func1);
-			            break;
-			        default:
-			            System.out.println("Opção inválida. Digite novamente.");
-			            break;
-			     }
-			  }
-		
+			while (opcao <= 5) {
+				System.out.println("===== MENU =====");
+				System.out.println("1 - REGIÕES");
+				System.out.println("2 - PAÍSES");
+			    System.out.println("3 - LOCAIS");
+			    System.out.println("4 - DEPARTAMENTOS");
+			    System.out.println("5 - FUNCIONÁRIOS");
+			    
+			    System.out.print("Digite uma opção: ");
+			    opcao = scannerOpcao.nextInt();
+			    
+			    switch (opcao) {
+			    
+			    case 1:
+			    		while (opcaoOperacao <= 4){
+			    		System.out.println("\nREGIÕES");
+			    		System.out.println("===== MENU =====");
+					    System.out.println("1 - INCLUIR REGIÃO");
+					    System.out.println("2 - EXIBIR TODAS AS REGIÕES");
+					    System.out.println("3 - ATUALIZAR REGIÃO");
+					    System.out.println("4 - APAGAR REGIÃO");
+					    System.out.print("Digite uma opção: ");
+					    opcaoOperacao = scannerOperacao.nextInt();
+						    if(opcaoOperacao == 0) {
+					    		break;
+					    	}else {
+					    		switch (opcaoOperacao) {
+							    case 1:	            	
+							    	RegiaoOpcoes.incluirRegiao();
+						            break;
+						        case 2:
+						        	RegiaoOpcoes.exibirRegioes();
+						            break;
+						        case 3:
+						        	RegiaoOpcoes.updateRegiao();
+						            break;
+						        case 4:
+						        	RegiaoOpcoes.deleteRegiao();
+						            break;
+						        default:
+						            System.out.println("Opção inválida. Digite novamente.");
+						            break;
+					    		}
+					    	}
+			    		}
+			    	break;//Fim REGIÃO
+			    	
+			    case 2:
+			    	while (opcaoOperacao <= 4){
+			    		System.out.println("\nPAÍSES");
+			    		System.out.println("===== MENU =====");
+					    System.out.println("1 - INCLUIR PAÍS");
+					    System.out.println("2 - EXIBIR TODOS OS PAÍSES");
+					    System.out.println("3 - ATUALIZAR PAÍS");
+					    System.out.println("4 - APAGAR PAÍS");
+					    System.out.print("Digite uma opção: ");
+					    opcaoOperacao = scannerOperacao.nextInt();
+						    if(opcaoOperacao == 0) {
+					    		break;
+					    	}else {
+					    		switch (opcaoOperacao) {
+							    case 1:	            	
+							    	PaisOpcoes.incluirPais();
+						            break;
+						        case 2:
+						        	PaisOpcoes.exibirPaises();
+						            break;
+						        case 3:
+						        	PaisOpcoes.updatePais();
+						            break;
+						        case 4:
+						        	PaisOpcoes.deletePais();
+						            break;
+						        default:
+						            System.out.println("Opção inválida. Digite novamente.");
+						            break;
+					    		}
+					    	}
+			    		}
+			    	break;//Fim PAÍSES
+			    	
+			    case 3:
+			    	break;
+			    	
+			    case 4:
+			    	break;
+			    	
+			    case 5:	
+			    		while (opcaoOperacao <= 4){
+			    		System.out.println("\nFUNCIONÁRIOS");
+			    		System.out.println("===== MENU =====");
+					    System.out.println("1 - INCLUIR FUNCIONÁRIO");
+					    System.out.println("2 - EXIBIR TODOS OS FUNCIONÁRIOS");
+					    System.out.println("3 - ATUALIZAR FUNCIONÁRIO");
+					    System.out.println("4 - APAGAR FUNCIONÁRIO");
+					    System.out.print("Digite uma opção: ");
+					    opcaoOperacao = scannerOperacao.nextInt();
+					    	if(opcaoOperacao == 0) {
+					    		break;
+					    	}else {
+					    		switch (opcaoOperacao) {
+							    case 1:
+							    	FuncionarioOpcoes.incluirFuncionario();
+						            break;
+						        case 2:
+						        	FuncionarioOpcoes.exibirFuncionarios();
+						            break;
+						        case 3:
+						        	FuncionarioOpcoes.updateFuncionario();
+						            break;
+						        case 4:
+						        	FuncionarioOpcoes.deleteFuncionario();
+						            break;
+						        default:
+						            System.out.println("Opção inválida. Digite novamente.");
+						            break;
+					    		}
+					    	}
+			    		}
+			    	break;//Fim FUNCIONÁRIO
+			    				    
+			    }//Final SWITCH das opções INTERNAS DO MENU
+			}//Final SWITCH das opções do MENU
 		
 	      scannerOpcao.close();
 	      entradaIdUpdate.close();
@@ -115,7 +166,8 @@ public class App {
 	      entradaIdDelete.close();
 	      entradaIncludeFloat.close();
 	      entradaUpdateFloat.close();
-		
+	      scannerOperacao.close();
+	      
 //		Contato con1 = new Contato();
 //		con1.setNome("Diogo");
 //		con1.setEmail("diogo@gmail.com");

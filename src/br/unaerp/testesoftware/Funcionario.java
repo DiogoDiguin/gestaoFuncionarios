@@ -29,4 +29,8 @@ public class Funcionario {
 	public void setSalario(float salario) {
 		this.salario = salario;
 	}
+	
+	public void calcularMediaSalarial() {
+		
+	}
 }

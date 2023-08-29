@@ -1,13 +1,13 @@
 package br.unaerp.testesoftware;
 
 public class Regiao {
-	public Long idRegiao;
+	public int idRegiao;
 	private String nomeRegiao;
 	
-	public Long getId() {
+	public int getId() {
 		return idRegiao;
 	}
-	public void setId(Long idRegiao) {
+	public void setId(int idRegiao) {
 		this.idRegiao = idRegiao;
 	}
 	public String getNomeRegiao() {

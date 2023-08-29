@@ -13,8 +13,7 @@ public class FuncionarioDAO {
 	}
 	
 	public void insert(Funcionario f) {
-		String sql = "insert into t_funcionario (primeiroNome,ultimoNome,salario" + "values (?,?,?)";
-	
+		String sql = "insert into t_funcionario (primeiroNome, ultimoNome, salario) values (?,?,?)";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -63,13 +62,13 @@ public class FuncionarioDAO {
 	}
 	
 	public void update(Funcionario funcionario) {
-	    String sql = "update t_funcionario set primerioNome=?, ultimoNome=?, salario=?," + "where id=?";
+	    String sql = "update t_funcionario set primeiroNome=?, ultimoNome=?, salario=? where idFuncionario=?";
 	    try {
 	        PreparedStatement stmt = connection.prepareStatement(sql);
 	        stmt.setString(1, funcionario.getPrimeiroNome());
 	        stmt.setString(2, funcionario.getUltimoNome());
 	        stmt.setFloat(3, funcionario.getSalario());
-	        stmt.setFloat(4, funcionario.getIdFuncionario());
+	        stmt.setLong(4, funcionario.getIdFuncionario());
 	        stmt.execute();
 	        stmt.close();
 	    } catch (SQLException e) {
@@ -79,7 +78,7 @@ public class FuncionarioDAO {
 	
 	public void delete(Funcionario funcionario) {
 	    try {
-	        PreparedStatement stmt = connection.prepareStatement("delete from t_funcionario where id=?");
+	        PreparedStatement stmt = connection.prepareStatement("delete from t_funcionario where idFuncionario=?");
 	        stmt.setLong(1, funcionario.getIdFuncionario());
 	        stmt.execute();
 	        stmt.close();
