@@ -20,15 +20,15 @@ public class FuncionarioOpcoes {
 		System.out.printf("%n");
     	System.out.println("1 - INCLUIR FUNCIONÁRIO");
     	
-    	System.out.println("Digite o 1º NOME: ");
+    	System.out.print("Digite o 1º NOME: ");
     	String Pnome = entradaInclude.nextLine();
     	
     	
-        System.out.println("Digite o 2º NOME: ");
+        System.out.print("Digite o 2º NOME: ");
         String Unome = entradaInclude.nextLine();
         
         
-        System.out.println("Digite o SALÁRIO: ");
+        System.out.print("Digite o SALÁRIO: ");
         float salario = entradaIncludeFloat.nextFloat();
         
         func1.setPrimeiroNome(Pnome);
@@ -51,19 +51,19 @@ public class FuncionarioOpcoes {
         System.out.println("3 - ATUALIZAR FUNCIONÁRIO");
         dao.getAll();
         
-        System.out.println("Digite o ID: ");
-    	Long id = entradaIdUpdate.nextLong();
+        System.out.print("Digite o ID: ");
+    	int id = entradaIdUpdate.nextInt();
     	func1.setIdFuncionario(id);
     	
-    	System.out.println("Digite o 1º NOME: ");
+    	System.out.print("Digite o 1º NOME: ");
     	String NovoPnome = entradaUpdateStrings.nextLine();
     	func1.setPrimeiroNome(NovoPnome);
     	
-        System.out.println("Digite o 2º NOME: ");
+        System.out.print("Digite o 2º NOME: ");
         String NovoUnome = entradaUpdateStrings.nextLine();
         func1.setUltimoNome(NovoUnome);
         
-        System.out.println("Digite o SALÁRIO: ");
+        System.out.print("Digite o SALÁRIO: ");
         Float NovoSalario = entradaUpdateFloat.nextFloat();
         func1.setSalario(NovoSalario);
         
@@ -74,8 +74,8 @@ public class FuncionarioOpcoes {
     	System.out.printf("%n");
     	System.out.println("4 - APAGAR FUNCIONÁRIO");
     	dao.getAll();
-    	System.out.println("Digite o ID: ");
-    	Long idDelete = entradaIdDelete.nextLong();
+    	System.out.print("Digite o ID: ");
+    	int idDelete = entradaIdDelete.nextInt();
     	func1.setIdFuncionario(idDelete);
     	
     	dao.delete(func1);

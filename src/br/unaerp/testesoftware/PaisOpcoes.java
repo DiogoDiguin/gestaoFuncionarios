@@ -18,12 +18,12 @@ public class PaisOpcoes {
         System.out.printf("%n");
         System.out.println("1 - INCLUIR PAÍS");
 
-        System.out.println("Digite o NOME: ");
+        System.out.print("Digite o NOME: ");
         String nome = entradaInclude.nextLine();
 
         daoR.getAll();
         
-        System.out.println("Digite o ID da REGIÃO: ");
+        System.out.print("Digite o ID da REGIÃO: ");
         int regiaoId = entradaInclude.nextInt();
 
         pais.setNomePais(nome);
@@ -51,15 +51,15 @@ public class PaisOpcoes {
 
         dao.getAll();
 
-        System.out.println("Digite o ID: ");
+        System.out.print("Digite o ID: ");
         int id = entradaIdUpdate.nextInt();
 
-        System.out.println("Digite o NOVO NOME: ");
+        System.out.print("Digite o NOVO NOME: ");
         String novoNome = entradaUpdateStrings.nextLine();
         
         daoR.getAll();
 
-        System.out.println("Digite o NOVO ID da REGIÃO: ");
+        System.out.print("Digite o NOVO ID da REGIÃO: ");
         int novoIdRegiao = entradaIdUpdate.nextInt();
 
         pais.setIdPais(id);
@@ -78,7 +78,7 @@ public class PaisOpcoes {
         System.out.println("4 - APAGAR REGIÃO");
 
         dao.getAll();
-        System.out.println("Digite o ID: ");
+        System.out.print("Digite o ID: ");
         int idDelete = entradaIdDelete.nextInt();
         pais.setIdPais(idDelete);
 

@@ -22,19 +22,18 @@ private Connection connection;
 	public void insert(Departamento d) {
 		//daoR.getAll();
 		
-	    int idPais = l.getPais().getIdPais();
+	    int idGerente = d.getGerente().getIdFuncionario();
+	    int idLocal = d.getLocal().getIdLocal();
 	    
-	    String sql = "insert into t_local (enderecoRua, codigoPostal, cidade, estadoProvincia, pais)"
-	    		+ " values (?, ?, ?, ?, ?)";
+	    String sql = "insert into t_departamento (nomeDpto, gerente, local)"
+	    		+ " values (?, ?, ?)";
 	    
 	    try {
 	        PreparedStatement stmt = connection.prepareStatement(sql);
 	        
-	        stmt.setString(1, l.getEnderecoRua());
-	        stmt.setString(2, l.getCodigoPostal());
-	        stmt.setString(3, l.getCidade());
-	        stmt.setString(4, l.getEstado());
-	        stmt.setInt(5, idPais);
+	        stmt.setString(1, d.getNomeDpto());
+	        stmt.setInt(2, idGerente);
+	        stmt.setInt(3, idLocal);
 	        
 	        stmt.execute();
 	        stmt.close();
@@ -81,17 +80,15 @@ private Connection connection;
 	}
 
 	
-	public void update(Local l) {
-	    String sql = "update t_local set enderecoRua=?, codigoPostal=?, cidade=?, estadoProvincia=?, pais=?"
-	    		+ " where idLocal=?";
+	public void update(Departamento d) {
+		String sql = "update t_departamento set nomeDpto=?, gerente=?, local=?"
+	    		+ " where idDpto=?";
 	    try {
 	        PreparedStatement stmt = connection.prepareStatement(sql);
-	        stmt.setString(1, l.getEnderecoRua());
-	        stmt.setString(2, l.getCodigoPostal());
-	        stmt.setString(3, l.getCidade());
-	        stmt.setString(4, l.getEstado());
-	        stmt.setInt(5, l.getPais().getIdPais());
-	        stmt.setInt(6, l.getIdLocal());
+	        stmt.setString(1, d.getNomeDpto());
+	        stmt.setInt(2, d.getGerente().getIdFuncionario());
+	        stmt.setInt(3, d.getLocal().getIdLocal());
+	        stmt.setInt(4, d.idDpto);
 	        stmt.execute();
 	        stmt.close();
 	    } catch (SQLException e) {
@@ -100,10 +97,10 @@ private Connection connection;
 	}
 
 	
-	public void delete(Local l) {
+	public void delete(Departamento d) {
 	    try {
-	        PreparedStatement stmt = connection.prepareStatement("delete from t_local where idLocal=?");
-	        stmt.setLong(1, l.getIdLocal());
+	        PreparedStatement stmt = connection.prepareStatement("delete from t_departamento where idDpto=?");
+	        stmt.setLong(1, d.getIdDpto());
 	        stmt.execute();
 	        stmt.close();
 	    } catch (SQLException e) {

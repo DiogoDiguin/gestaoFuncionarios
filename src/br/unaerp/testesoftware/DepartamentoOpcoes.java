@@ -14,41 +14,35 @@ public class DepartamentoOpcoes {
 
     static Scanner entradaInclude = new Scanner(System.in);
     static Scanner entradaIdUpdate = new Scanner(System.in);
+    static Scanner entradaInt = new Scanner(System.in);
     static Scanner entradaUpdateStrings = new Scanner(System.in);
     static Scanner entradaIdDelete = new Scanner(System.in);
 
     public static void incluirDepartamento() {
         System.out.printf("%n");
-        System.out.println("1 - INCLUIR LOCAL");
+        System.out.println("1 - INCLUIR DEPARTAMENTO");
 
-        System.out.println("Digite o ENDEREÇO: ");
-        String endereco = entradaInclude.nextLine();
+        System.out.print("Digite o NOME: ");
+        String nomeDpto = entradaInclude.nextLine();
         
-        System.out.println("Digite o CÓDIGO POSTAL: ");
-        String codigoPostal = entradaInclude.nextLine();
+        daoF.getAll();
+        System.out.print("Digite o CÓDIGO DO GERENTE: ");
+        int gerenteDpto = entradaInt.nextInt();
         
-        System.out.println("Digite a CIDADE: ");
-        String cidade = entradaInclude.nextLine();
-        
-        System.out.println("Digite o ESTADO: ");
-        String estadoProvincia = entradaInclude.nextLine();
+        daoL.getAll();
+        System.out.print("Digite a CÓDIGO DO LOCAL: ");
+        int localDpto = entradaInt.nextInt();
 
-        daoP.getAll();
-        
-        System.out.println("Digite o ID do PAÍS: ");
-        int paisId = entradaInclude.nextInt();
+        dpto.setNomeDpto(nomeDpto);
+        funcionario.setIdFuncionario(gerenteDpto);
+        local.setIdLocal(localDpto);
 
-        local.setEnderecoRua(endereco);
-        local.setCodigoPostal(codigoPostal);
-        local.setCidade(cidade);
-        local.setEstado(estadoProvincia);
-        pais.setIdPais(paisId);
-
-        // Associa o país ao local
-        local.setPais(pais);
+        // Associa o funcionários e local ao departamento
+        dpto.setGerente(funcionario);
+        dpto.setLocal(local);
 
         // Chama o método insert() para adicionar o país ao banco de dados
-        dao.insert(local);
+        dao.insert(dpto);
 
         System.out.println("-");
     }
@@ -62,55 +56,47 @@ public class DepartamentoOpcoes {
 
     public static void updateDepartamento() {
         System.out.printf("%n");
-        System.out.println("3 - ATUALIZAR LOCAL");
+        System.out.println("3 - ATUALIZAR DEPARTAMENTO");
 
         dao.getAll();
 
-        System.out.println("Digite o ID: ");
+        System.out.print("Digite o ID: ");
         int id = entradaIdUpdate.nextInt();
 
-        System.out.println("Digite o NOVO ENDEREÇO: ");
-        String novoEndereco = entradaUpdateStrings.nextLine();
+        System.out.print("Digite o NOVO NOME: ");
+        String novoNome = entradaUpdateStrings.nextLine();
         
-        System.out.println("Digite o NOVO CÓDIGO POSTAL: ");
-        String novoCodigoPostal = entradaUpdateStrings.nextLine();
+        daoF.getAll();
+        System.out.print("Digite o NOVO GERENTE: ");
+        int novoGerente = entradaInt.nextInt();
         
-        System.out.println("Digite a NOVA CIDADE: ");
-        String novaCidade = entradaUpdateStrings.nextLine();
-        
-        System.out.println("Digite o NOVO ESTADO: ");
-        String novoEstado = entradaUpdateStrings.nextLine();
-        
-        daoP.getAll();
+        daoL.getAll();
+        System.out.print("Digite a NOVO LOCAL: ");
+        int novoLocal = entradaInt.nextInt();
 
-        System.out.println("Digite o NOVO ID do PAÍS: ");
-        int novoIdPais = entradaIdUpdate.nextInt();
+        dpto.setIdDpto(id);
+        dpto.setNomeDpto(novoNome);
+        local.setIdLocal(novoLocal);
+        funcionario.setIdFuncionario(novoGerente);
 
-        local.setIdLocal(id);
-        local.setEnderecoRua(novoEndereco);
-        local.setCodigoPostal(novoCodigoPostal);
-        local.setCidade(novaCidade);
-        local.setEstado(novoEstado);
-        
-        pais.setIdPais(novoIdPais);
+        // Associa o novo gerente e o novo local ao Departamento
+        dpto.setGerente(funcionario);
+        dpto.setLocal(local);
 
-        // Associa o novo país ao local
-        local.setPais(pais);
-
-        // Chama o método update() para atualizar o local no banco de dados
-        dao.update(local);
+        // Chama o método update() para atualizar o Departamento no banco de dados
+        dao.update(dpto);
     }
 
     public static void deleteDepartamento() {
         System.out.printf("%n");
-        System.out.println("4 - APAGAR LOCAL");
+        System.out.println("4 - APAGAR DEPARTAMENTO");
 
         dao.getAll();
         
-        System.out.println("Digite o ID: ");
+        System.out.print("Digite o ID: ");
         int idDelete = entradaIdDelete.nextInt();
-        local.setIdLocal(idDelete);
+        dpto.setIdDpto(idDelete);
 
-        dao.delete(local);
+        dao.delete(dpto);
     }
 }

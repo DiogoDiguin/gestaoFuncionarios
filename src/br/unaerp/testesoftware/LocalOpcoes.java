@@ -18,21 +18,21 @@ public class LocalOpcoes {
         System.out.printf("%n");
         System.out.println("1 - INCLUIR LOCAL");
 
-        System.out.println("Digite o ENDEREÇO: ");
+        System.out.print("Digite o ENDEREÇO: ");
         String endereco = entradaInclude.nextLine();
         
-        System.out.println("Digite o CÓDIGO POSTAL: ");
+        System.out.print("Digite o CÓDIGO POSTAL: ");
         String codigoPostal = entradaInclude.nextLine();
         
-        System.out.println("Digite a CIDADE: ");
+        System.out.print("Digite a CIDADE: ");
         String cidade = entradaInclude.nextLine();
         
-        System.out.println("Digite o ESTADO: ");
+        System.out.print("Digite o ESTADO: ");
         String estadoProvincia = entradaInclude.nextLine();
 
         daoP.getAll();
         
-        System.out.println("Digite o ID do PAÍS: ");
+        System.out.print("Digite o ID do PAÍS: ");
         int paisId = entradaInclude.nextInt();
 
         local.setEnderecoRua(endereco);
@@ -63,24 +63,24 @@ public class LocalOpcoes {
 
         dao.getAll();
 
-        System.out.println("Digite o ID: ");
+        System.out.print("Digite o ID: ");
         int id = entradaIdUpdate.nextInt();
 
-        System.out.println("Digite o NOVO ENDEREÇO: ");
+        System.out.print("Digite o NOVO ENDEREÇO: ");
         String novoEndereco = entradaUpdateStrings.nextLine();
         
-        System.out.println("Digite o NOVO CÓDIGO POSTAL: ");
+        System.out.print("Digite o NOVO CÓDIGO POSTAL: ");
         String novoCodigoPostal = entradaUpdateStrings.nextLine();
         
-        System.out.println("Digite a NOVA CIDADE: ");
+        System.out.print("Digite a NOVA CIDADE: ");
         String novaCidade = entradaUpdateStrings.nextLine();
         
-        System.out.println("Digite o NOVO ESTADO: ");
+        System.out.print("Digite o NOVO ESTADO: ");
         String novoEstado = entradaUpdateStrings.nextLine();
         
         daoP.getAll();
 
-        System.out.println("Digite o NOVO ID do PAÍS: ");
+        System.out.print("Digite o NOVO ID do PAÍS: ");
         int novoIdPais = entradaIdUpdate.nextInt();
 
         local.setIdLocal(id);
@@ -104,7 +104,7 @@ public class LocalOpcoes {
 
         dao.getAll();
         
-        System.out.println("Digite o ID: ");
+        System.out.print("Digite o ID: ");
         int idDelete = entradaIdDelete.nextInt();
         local.setIdLocal(idDelete);
 

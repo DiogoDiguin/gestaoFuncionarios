@@ -1,14 +1,14 @@
 package br.unaerp.testesoftware;
 
 public class Funcionario {
-	public Long idFuncionario;
+	public int idFuncionario;
 	private String primeiroNome, ultimoNome;
 	private float salario;
 	
-	public Long getIdFuncionario() {
+	public int getIdFuncionario() {
 		return idFuncionario;
 	}
-	public void setIdFuncionario(Long id) {
+	public void setIdFuncionario(int id) {
 		this.idFuncionario = id;
 	}
 	public String getPrimeiroNome() {

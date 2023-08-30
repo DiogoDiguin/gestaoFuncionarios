@@ -20,7 +20,7 @@ public class RegiaoOpcoes {
 		System.out.printf("%n");
     	System.out.println("1 - INCLUIR REGIÃO");
     	
-    	System.out.println("Digite o NOME: ");
+    	System.out.print("Digite o NOME: ");
     	String nome = entradaInclude.nextLine();
         
     	reg.setNomeRegiao(nome);
@@ -41,11 +41,11 @@ public class RegiaoOpcoes {
         System.out.println("3 - ATUALIZAR REGIÃO");
         dao.getAll();
         
-        System.out.println("Digite o ID: ");
+        System.out.print("Digite o ID: ");
     	int id = entradaIdUpdate.nextInt();
     	reg.setId(id);
     	
-    	System.out.println("Digite o NOME: ");
+    	System.out.print("Digite o NOME: ");
     	String NovoNome = entradaUpdateStrings.nextLine();
     	reg.setNomeRegiao(NovoNome);
     	
@@ -56,7 +56,7 @@ public class RegiaoOpcoes {
     	System.out.printf("%n");
     	System.out.println("4 - APAGAR REGIÃO");
     	dao.getAll();
-    	System.out.println("Digite o ID: ");
+    	System.out.print("Digite o ID: ");
     	int idDelete = entradaIdDelete.nextInt();
     	reg.setId(idDelete);
     	
