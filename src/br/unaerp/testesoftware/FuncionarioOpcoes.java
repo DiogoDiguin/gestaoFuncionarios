@@ -8,6 +8,7 @@ public class FuncionarioOpcoes {
 	
 	static FuncionarioDAO dao = new FuncionarioDAO();
 	static Funcionario func1 = new Funcionario();
+	static RegiaoDAO daoR = new RegiaoDAO();
 	
 	static Scanner entradaInclude = new Scanner(System.in);
 	static Scanner entradaIncludeFloat = new Scanner(System.in);
@@ -15,6 +16,7 @@ public class FuncionarioOpcoes {
 	static Scanner entradaUpdateStrings = new Scanner(System.in);
 	static Scanner entradaUpdateFloat = new Scanner(System.in);
 	static Scanner entradaIdDelete = new Scanner(System.in);
+	static Scanner entradaInts = new Scanner(System.in);
 	
 	public static void incluirFuncionario() {
 		System.out.printf("%n");
@@ -26,14 +28,18 @@ public class FuncionarioOpcoes {
     	
         System.out.print("Digite o 2º NOME: ");
         String Unome = entradaInclude.nextLine();
-        
-        
+                
         System.out.print("Digite o SALÁRIO: ");
         float salario = entradaIncludeFloat.nextFloat();
+        
+        daoR.getAll();
+        System.out.print("Digite a REGIÃO: ");
+        int regiao = entradaInts.nextInt();
         
         func1.setPrimeiroNome(Pnome);
         func1.setUltimoNome(Unome);
         func1.setSalario(salario);
+        func1.setRegiao(regiao);
 
         dao.insert(func1);
         System.out.println("-");
@@ -79,5 +85,12 @@ public class FuncionarioOpcoes {
     	func1.setIdFuncionario(idDelete);
     	
     	dao.delete(func1);
+    }
+    
+    public static void calcularMediaSalarial() {
+    	System.out.printf("%n");
+    	System.out.println("5 - MÉDIA SALARIAL POR REGIÃO");
+    	
+    	dao.mediaSalarial();
     }
 }

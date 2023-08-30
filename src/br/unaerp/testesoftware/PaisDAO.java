@@ -68,7 +68,6 @@ private Connection connection;
 	    }
 	    return null;
 	}
-
 	
 	public void update(Pais p) {
 	    String sql = "update t_pais set nomePais=?, regiao=? where idPais=?";
@@ -95,4 +94,41 @@ private Connection connection;
 	        throw new RuntimeException(e);
 	    }
 	}
+	
+	public ResultSet selectDepartamentos() { // SELECT
+	    /*String sql = "SELECT p.nomePais, GROUP_CONCAT(d.nomeDpto SEPARATOR ', ') AS Departamentos "
+	    		+ "FROM t_departamento d "
+	    		+ "JOIN t_local l ON d.local = l.idLocal "
+	    		+ "JOIN t_pais p ON l.pais = p.idPais "
+	    		+ "GROUP BY p.nomePais;";*/
+		
+		String sql = "SELECT p.nomePais, d.nomeDpto "
+				+ "FROM t_pais p "
+				+ "JOIN t_local l ON p.idPais = l.pais "
+				+ "JOIN t_departamento d ON l.idLocal = d.local "
+				+ "ORDER BY p.nomePais, d.nomeDpto;";
+
+	    try {
+	        PreparedStatement stmt = connection.prepareStatement(sql);
+	        ResultSet rs = stmt.executeQuery(sql);
+
+	        System.out.printf("%-25s %-25s\n", "PAÍS", "DEPARTAMENTO");
+
+	        while (rs.next()) {
+	        	String nomePais = rs.getString("nomePais");
+	            String nomeDpto = rs.getString("nomeDpto");
+
+	            String linha = String.format("%-25s %-25s", nomePais, nomeDpto);
+	            System.out.println(linha);
+	        }
+	        System.out.printf("%n");
+
+	        rs.close();
+	        stmt.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return null;
+	}
+
 }

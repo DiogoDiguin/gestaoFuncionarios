@@ -4,7 +4,14 @@ public class Funcionario {
 	public int idFuncionario;
 	private String primeiroNome, ultimoNome;
 	private float salario;
+	private int regiao;
 	
+	public int getRegiao() {
+		return regiao;
+	}
+	public void setRegiao(int regiao) {
+		this.regiao = regiao;
+	}
 	public int getIdFuncionario() {
 		return idFuncionario;
 	}

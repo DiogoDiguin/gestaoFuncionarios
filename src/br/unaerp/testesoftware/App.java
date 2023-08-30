@@ -83,13 +83,14 @@ public class App {
 			    	break;//Fim REGIÃO
 			    	
 			    case 2:
-			    	while (opcaoOperacao <= 4){
+			    	while (opcaoOperacao <= 5){
 			    		System.out.println("\nPAÍSES");
 			    		System.out.println("===== MENU =====");
 					    System.out.println("1 - INCLUIR PAÍS");
 					    System.out.println("2 - EXIBIR TODOS OS PAÍSES");
 					    System.out.println("3 - ATUALIZAR PAÍS");
 					    System.out.println("4 - APAGAR PAÍS");
+					    System.out.println("5 - EXIBIR DEPARTAMENTOS POR PAÍS");
 					    System.out.print("Digite uma opção: ");
 					    opcaoOperacao = scannerOperacao.nextInt();
 						    if(opcaoOperacao == 0) {
@@ -107,6 +108,9 @@ public class App {
 						            break;
 						        case 4:
 						        	PaisOpcoes.deletePais();
+						            break;
+						        case 5:
+						        	PaisOpcoes.departamentosPais();
 						            break;
 						        default:
 						            System.out.println("Opção inválida. Digite novamente.");
@@ -185,13 +189,14 @@ public class App {
 			    	break;//Fim DEPARTAMENTOS
 			    	
 			    case 5:	
-			    		while (opcaoOperacao <= 4){
+			    		while (opcaoOperacao <= 5){
 			    		System.out.println("\nFUNCIONÁRIOS");
 			    		System.out.println("===== MENU =====");
 					    System.out.println("1 - INCLUIR FUNCIONÁRIO");
 					    System.out.println("2 - EXIBIR TODOS OS FUNCIONÁRIOS");
 					    System.out.println("3 - ATUALIZAR FUNCIONÁRIO");
 					    System.out.println("4 - APAGAR FUNCIONÁRIO");
+					    System.out.println("5 - MÉDIA SALARIAL POR REGIÃO");
 					    System.out.print("Digite uma opção: ");
 					    opcaoOperacao = scannerOperacao.nextInt();
 					    	if(opcaoOperacao == 0) {
@@ -209,6 +214,9 @@ public class App {
 						            break;
 						        case 4:
 						        	FuncionarioOpcoes.deleteFuncionario();
+						            break;
+						        case 5:
+						        	FuncionarioOpcoes.calcularMediaSalarial();
 						            break;
 						        default:
 						            System.out.println("Opção inválida. Digite novamente.");

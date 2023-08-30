@@ -84,4 +84,11 @@ public class PaisOpcoes {
 
         dao.delete(pais);
     }
+    
+    public static void departamentosPais() {
+        System.out.printf("%n");
+        System.out.println("5 - EXIBIR DEPARTAMENTOS POR PAÍS");
+
+        dao.selectDepartamentos();
+    }
 }
