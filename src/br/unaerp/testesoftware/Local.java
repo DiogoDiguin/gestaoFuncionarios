@@ -2,7 +2,7 @@ package br.unaerp.testesoftware;
 
 public class Local {
 	public int idLocal;
-	private String nomeLocal, codigoPostal, cidade, estado;
+	private String enderecoRua, codigoPostal, cidade, estado;
 	private Pais pais;
 	
 	public int getIdLocal() {
@@ -11,11 +11,11 @@ public class Local {
 	public void setIdLocal(int idLocal) {
 		this.idLocal = idLocal;
 	}
-	public String getNomeLocal() {
-		return nomeLocal;
+	public String getEnderecoRua() {
+		return enderecoRua;
 	}
-	public void setNomeLocal(String nomeLocal) {
-		this.nomeLocal = nomeLocal;
+	public void setEnderecoRua(String enderecoRua) {
+		this.enderecoRua = enderecoRua;
 	}
 	public String getCodigoPostal() {
 		return codigoPostal;
@@ -42,3 +42,5 @@ public class Local {
 		this.pais = pais;
 	}
 }
+	
+	

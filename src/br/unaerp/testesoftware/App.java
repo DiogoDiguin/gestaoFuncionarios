@@ -117,10 +117,72 @@ public class App {
 			    	break;//Fim PAÍSES
 			    	
 			    case 3:
-			    	break;
+			    	while (opcaoOperacao <= 4){
+			    		System.out.println("\nLOCAIS");
+			    		System.out.println("===== MENU =====");
+					    System.out.println("1 - INCLUIR LOCAL");
+					    System.out.println("2 - EXIBIR TODOS OS LOCAIS");
+					    System.out.println("3 - ATUALIZAR LOCAL");
+					    System.out.println("4 - APAGAR LOCAL");
+					    System.out.print("Digite uma opção: ");
+					    opcaoOperacao = scannerOperacao.nextInt();
+					    	if(opcaoOperacao == 0) {
+					    		break;
+					    	}else {
+					    		switch (opcaoOperacao) {
+							    case 1:
+							    	LocalOpcoes.incluirLocal();
+						            break;
+						        case 2:
+						        	LocalOpcoes.exibirLocais();
+						            break;
+						        case 3:
+						        	LocalOpcoes.updateLocal();
+						            break;
+						        case 4:
+						        	LocalOpcoes.deleteLocal();
+						            break;
+						        default:
+						            System.out.println("Opção inválida. Digite novamente.");
+						            break;
+					    		}
+					    	}
+			    		}
+			    	break;//Fim LOCAIS
 			    	
 			    case 4:
-			    	break;
+			    	while (opcaoOperacao <= 4){
+			    		System.out.println("\nDEPARTAMENTOS");
+			    		System.out.println("===== MENU =====");
+					    System.out.println("1 - INCLUIR DEPARTAMENTO");
+					    System.out.println("2 - EXIBIR TODOS OS DEPARTAMENTOS");
+					    System.out.println("3 - ATUALIZAR DEPARTAMENTO");
+					    System.out.println("4 - APAGAR DEPARTAMENTO");
+					    System.out.print("Digite uma opção: ");
+					    opcaoOperacao = scannerOperacao.nextInt();
+					    	if(opcaoOperacao == 0) {
+					    		break;
+					    	}else {
+					    		switch (opcaoOperacao) {
+							    case 1:
+							    	DepartamentoOpcoes.incluirDepartamento();
+						            break;
+						        case 2:
+						        	DepartamentoOpcoes.exibirDepartamentos();
+						            break;
+						        case 3:
+						        	DepartamentoOpcoes.updateDepartamento();
+						            break;
+						        case 4:
+						        	DepartamentoOpcoes.deleteDepartamento();
+						            break;
+						        default:
+						            System.out.println("Opção inválida. Digite novamente.");
+						            break;
+					    		}
+					    	}
+			    		}
+			    	break;//Fim DEPARTAMENTOS
 			    	
 			    case 5:	
 			    		while (opcaoOperacao <= 4){
@@ -154,7 +216,7 @@ public class App {
 					    		}
 					    	}
 			    		}
-			    	break;//Fim FUNCIONÁRIO
+			    	break;//Fim FUNCIONÁRIOS
 			    				    
 			    }//Final SWITCH das opções INTERNAS DO MENU
 			}//Final SWITCH das opções do MENU
