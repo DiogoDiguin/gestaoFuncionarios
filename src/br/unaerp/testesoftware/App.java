@@ -1,13 +1,14 @@
 package br.unaerp.testesoftware;
 
-import java.time.LocalDate;
+/*import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.sql.ResultSet;
+import br.unaerp.testesoftware.ResultSetPrinter;*/
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import br.unaerp.testesoftware.ResultSetPrinter;
+
 
 public class App {
 
@@ -49,13 +50,14 @@ public class App {
 			    switch (opcao) {
 			    
 			    case 1:
-			    		while (opcaoOperacao <= 4){
+			    		while (opcaoOperacao <= 5){
 			    		System.out.println("\nREGIÕES");
 			    		System.out.println("===== MENU =====");
 					    System.out.println("1 - INCLUIR REGIÃO");
 					    System.out.println("2 - EXIBIR TODAS AS REGIÕES");
 					    System.out.println("3 - ATUALIZAR REGIÃO");
 					    System.out.println("4 - APAGAR REGIÃO");
+					    System.out.println("5 - MÉDIA SALARIAL POR REGIÃO");
 					    System.out.print("Digite uma opção: ");
 					    opcaoOperacao = scannerOperacao.nextInt();
 						    if(opcaoOperacao == 0) {
@@ -73,6 +75,9 @@ public class App {
 						            break;
 						        case 4:
 						        	RegiaoOpcoes.deleteRegiao();
+						            break;
+						        case 5:
+						        	RegiaoOpcoes.calcularMediaSalarial();
 						            break;
 						        default:
 						            System.out.println("Opção inválida. Digite novamente.");
@@ -200,7 +205,7 @@ public class App {
 					    System.out.println("2 - EXIBIR TODOS OS FUNCIONÁRIOS");
 					    System.out.println("3 - ATUALIZAR FUNCIONÁRIO");
 					    System.out.println("4 - APAGAR FUNCIONÁRIO");
-					    System.out.println("5 - MÉDIA SALARIAL POR REGIÃO");
+					    System.out.println("5 - REDEFINIR SALÁRIO");
 					    System.out.print("Digite uma opção: ");
 					    opcaoOperacao = scannerOperacao.nextInt();
 					    	if(opcaoOperacao == 0) {
@@ -208,19 +213,19 @@ public class App {
 					    	}else {
 					    		switch (opcaoOperacao) {
 							    case 1:
-							    	FuncionarioOpcoes.incluirFuncionario();
+							    	FuncionarioOpcoes.operacoesFuncionario(opcaoOperacao);
 						            break;
 						        case 2:
-						        	FuncionarioOpcoes.exibirFuncionarios();
+						        	FuncionarioOpcoes.operacoesFuncionario(opcaoOperacao);
 						            break;
 						        case 3:
-						        	FuncionarioOpcoes.updateFuncionario();
+						        	FuncionarioOpcoes.operacoesFuncionario(opcaoOperacao);
 						            break;
 						        case 4:
-						        	FuncionarioOpcoes.deleteFuncionario();
+						        	FuncionarioOpcoes.operacoesFuncionario(opcaoOperacao);
 						            break;
 						        case 5:
-						        	FuncionarioOpcoes.calcularMediaSalarial();
+						        	FuncionarioOpcoes.operacoesFuncionario(opcaoOperacao);
 						            break;
 						        default:
 						            System.out.println("Opção inválida. Digite novamente.");

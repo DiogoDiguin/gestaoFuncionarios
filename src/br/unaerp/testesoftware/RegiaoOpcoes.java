@@ -6,14 +6,12 @@ public class RegiaoOpcoes {
 	
 	App aplicacao = new App();
 	
-	static RegiaoDAO dao = new RegiaoDAO();
+	static RegiaoDAO dao = ApplicationContext.getRegiaoDAO();
 	static Regiao reg = new Regiao();
 	
 	static Scanner entradaInclude = new Scanner(System.in);
-	static Scanner entradaIncludeFloat = new Scanner(System.in);
 	static Scanner entradaIdUpdate = new Scanner(System.in);
 	static Scanner entradaUpdateStrings = new Scanner(System.in);
-	static Scanner entradaUpdateFloat = new Scanner(System.in);
 	static Scanner entradaIdDelete = new Scanner(System.in);
 	
 	public static void incluirRegiao() {
@@ -61,5 +59,12 @@ public class RegiaoOpcoes {
     	reg.setId(idDelete);
     	
     	dao.delete(reg);
+    }
+    
+    public static void calcularMediaSalarial() {
+    	System.out.printf("%n");
+    	System.out.println("5 - MÉDIA SALARIAL POR REGIÃO");
+    	
+    	dao.mediaSalarial();
     }
 }

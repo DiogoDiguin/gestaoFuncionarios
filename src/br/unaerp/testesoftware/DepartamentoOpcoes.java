@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class DepartamentoOpcoes {
 
-    static DepartamentoDAO dao = new DepartamentoDAO();
-    static FuncionarioDAO daoF = new FuncionarioDAO();
-    static LocalDAO daoL = new LocalDAO();
-    
+    static DepartamentoDAO dao = ApplicationContext.getDepartamentoDAO();
+    static FuncionarioDAO daoF = ApplicationContext.getFuncionarioDAO();
+    static LocalDAO daoL = ApplicationContext.getLocalDAO();
+
     static Departamento dpto = new Departamento();
     static Funcionario funcionario = new Funcionario();
     static Local local = new Local();
@@ -24,11 +24,11 @@ public class DepartamentoOpcoes {
 
         System.out.print("Digite o NOME: ");
         String nomeDpto = entradaInclude.nextLine();
-        
+
         daoF.getAll();
         System.out.print("Digite o CÓDIGO DO GERENTE: ");
         int gerenteDpto = entradaInt.nextInt();
-        
+
         daoL.getAll();
         System.out.print("Digite a CÓDIGO DO LOCAL: ");
         int localDpto = entradaInt.nextInt();
@@ -65,11 +65,11 @@ public class DepartamentoOpcoes {
 
         System.out.print("Digite o NOVO NOME: ");
         String novoNome = entradaUpdateStrings.nextLine();
-        
+
         daoF.getAll();
         System.out.print("Digite o NOVO GERENTE: ");
         int novoGerente = entradaInt.nextInt();
-        
+
         daoL.getAll();
         System.out.print("Digite a NOVO LOCAL: ");
         int novoLocal = entradaInt.nextInt();
@@ -92,7 +92,7 @@ public class DepartamentoOpcoes {
         System.out.println("4 - APAGAR DEPARTAMENTO");
 
         dao.getAll();
-        
+
         System.out.print("Digite o ID: ");
         int idDelete = entradaIdDelete.nextInt();
         dpto.setIdDpto(idDelete);

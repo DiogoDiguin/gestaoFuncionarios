@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class LocalOpcoes {
 
-    static LocalDAO dao = new LocalDAO();
-    static PaisDAO daoP = new PaisDAO();
+    static LocalDAO dao = ApplicationContext.getLocalDAO();
+    static PaisDAO daoP = ApplicationContext.getPaisDAO();
     static Pais pais = new Pais();
     static Local local = new Local();
 
@@ -21,18 +21,18 @@ public class LocalOpcoes {
 
         System.out.print("Digite o ENDEREÇO: ");
         String endereco = entradaInclude.nextLine();
-        
+
         System.out.print("Digite o CÓDIGO POSTAL: ");
         String codigoPostal = entradaInclude.nextLine();
-        
+
         System.out.print("Digite a CIDADE: ");
         String cidade = entradaInclude.nextLine();
-        
+
         System.out.print("Digite o ESTADO: ");
         String estadoProvincia = entradaInclude.nextLine();
 
         daoP.getAll();
-        
+
         System.out.print("Digite o ID do PAÍS: ");
         int paisId = entradaInclude.nextInt();
 
@@ -69,16 +69,16 @@ public class LocalOpcoes {
 
         System.out.print("Digite o NOVO ENDEREÇO: ");
         String novoEndereco = entradaUpdateStrings.nextLine();
-        
+
         System.out.print("Digite o NOVO CÓDIGO POSTAL: ");
         String novoCodigoPostal = entradaUpdateStrings.nextLine();
-        
+
         System.out.print("Digite a NOVA CIDADE: ");
         String novaCidade = entradaUpdateStrings.nextLine();
-        
+
         System.out.print("Digite o NOVO ESTADO: ");
         String novoEstado = entradaUpdateStrings.nextLine();
-        
+
         daoP.getAll();
 
         System.out.print("Digite o NOVO ID do PAÍS: ");
@@ -89,7 +89,7 @@ public class LocalOpcoes {
         local.setCodigoPostal(novoCodigoPostal);
         local.setCidade(novaCidade);
         local.setEstado(novoEstado);
-        
+
         pais.setIdPais(novoIdPais);
 
         // Associa o novo país ao local
@@ -104,20 +104,20 @@ public class LocalOpcoes {
         System.out.println("4 - APAGAR LOCAL");
 
         dao.getAll();
-        
+
         System.out.print("Digite o ID: ");
         int idDelete = entradaIdDelete.nextInt();
         local.setIdLocal(idDelete);
 
         dao.delete(local);
     }
-    
+
     public static void listarFuncionarios() {
         System.out.printf("%n");
         System.out.println("5 - LISTAR FUNCIONÁRIOS DOS DEPARTAMENTOS");
 
         dao.getAll();
-        
+
         System.out.print("Digite o ID: ");
         int idLocal = entradaInts.nextInt();
         local.setIdLocal(idLocal);

@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class PaisOpcoes {
 
-    static PaisDAO dao = new PaisDAO();
-    static RegiaoDAO daoR = new RegiaoDAO();
+    static PaisDAO dao = ApplicationContext.getPaisDAO();
+    static RegiaoDAO daoR = ApplicationContext.getRegiaoDAO();
     static Pais pais = new Pais();
     static Regiao regiao = new Regiao();
 
