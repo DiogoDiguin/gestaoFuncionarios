@@ -10,6 +10,7 @@ public class LocalOpcoes {
     static Local local = new Local();
 
     static Scanner entradaInclude = new Scanner(System.in);
+    static Scanner entradaInts = new Scanner(System.in);
     static Scanner entradaIdUpdate = new Scanner(System.in);
     static Scanner entradaUpdateStrings = new Scanner(System.in);
     static Scanner entradaIdDelete = new Scanner(System.in);
@@ -109,5 +110,18 @@ public class LocalOpcoes {
         local.setIdLocal(idDelete);
 
         dao.delete(local);
+    }
+    
+    public static void listarFuncionarios() {
+        System.out.printf("%n");
+        System.out.println("5 - LISTAR FUNCIONÁRIOS DOS DEPARTAMENTOS");
+
+        dao.getAll();
+        
+        System.out.print("Digite o ID: ");
+        int idLocal = entradaInts.nextInt();
+        local.setIdLocal(idLocal);
+
+        dao.listarFuncionarios(local);
     }
 }

@@ -14,13 +14,14 @@ public class FuncionarioDAO {
 	}
 	
 	public void insert(Funcionario f) {
-		String sqlFunc = "INSERT INTO t_funcionario (primeiroNome, ultimoNome, salario) VALUES (?,?,?)";
+		String sqlFunc = "INSERT INTO t_funcionario (primeiroNome, ultimoNome, salario, departamento) VALUES (?,?,?,?)";
 
 		try {
 		    PreparedStatement stmtFunc = connection.prepareStatement(sqlFunc, Statement.RETURN_GENERATED_KEYS);
 		    stmtFunc.setString(1, f.getPrimeiroNome());
 		    stmtFunc.setString(2, f.getUltimoNome());
 		    stmtFunc.setFloat(3, f.getSalario());
+		    stmtFunc.setInt(4, f.getDpto());
 		    
 		    stmtFunc.execute();
 		    
@@ -82,15 +83,24 @@ public class FuncionarioDAO {
 	}
 	
 	public void update(Funcionario funcionario) {
-	    String sql = "update t_funcionario set primeiroNome=?, ultimoNome=?, salario=? where idFuncionario=?";
+	    String sql = "update t_funcionario set primeiroNome=?, ultimoNome=?, salario=?, departamento=? where idFuncionario=?";
+	    String sqlRegiao = "update t_regiaofuncionario set idRegiao=? where idFuncionario=?";
+	    
 	    try {
 	        PreparedStatement stmt = connection.prepareStatement(sql);
 	        stmt.setString(1, funcionario.getPrimeiroNome());
 	        stmt.setString(2, funcionario.getUltimoNome());
 	        stmt.setFloat(3, funcionario.getSalario());
-	        stmt.setLong(4, funcionario.getIdFuncionario());
+	        stmt.setInt(4, funcionario.getDpto());
+	        stmt.setLong(5, funcionario.getIdFuncionario());
 	        stmt.execute();
 	        stmt.close();
+	        
+	        PreparedStatement stmtRegiao = connection.prepareStatement(sqlRegiao);
+	        stmtRegiao.setInt(1, funcionario.getRegiao());
+	        stmtRegiao.setInt(2, funcionario.getIdFuncionario());
+	        stmtRegiao.execute();
+	        stmtRegiao.close();
 	    } catch (SQLException e) {
 	        throw new RuntimeException(e);
 	    }

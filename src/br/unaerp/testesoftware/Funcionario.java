@@ -5,7 +5,14 @@ public class Funcionario {
 	private String primeiroNome, ultimoNome;
 	private float salario;
 	private int regiao;
+	private int dpto;
 	
+	public int getDpto() {
+		return dpto;
+	}
+	public void setDpto(int dpto) {
+		this.dpto = dpto;
+	}
 	public int getRegiao() {
 		return regiao;
 	}

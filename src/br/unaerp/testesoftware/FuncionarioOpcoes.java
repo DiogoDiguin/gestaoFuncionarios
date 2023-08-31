@@ -10,6 +10,9 @@ public class FuncionarioOpcoes {
 	static Funcionario func1 = new Funcionario();
 	static RegiaoDAO daoR = new RegiaoDAO();
 	
+	static DepartamentoDAO daoD = new DepartamentoDAO();
+	static Departamento dpto = new Departamento();
+	
 	static Scanner entradaInclude = new Scanner(System.in);
 	static Scanner entradaIncludeFloat = new Scanner(System.in);
 	static Scanner entradaIdUpdate = new Scanner(System.in);
@@ -36,10 +39,15 @@ public class FuncionarioOpcoes {
         System.out.print("Digite a REGIÃO: ");
         int regiao = entradaInts.nextInt();
         
+        daoD.getAll();
+        System.out.print("Digite o DEPARTAMENTO: ");
+        int dpto = entradaInts.nextInt();
+        
         func1.setPrimeiroNome(Pnome);
         func1.setUltimoNome(Unome);
         func1.setSalario(salario);
         func1.setRegiao(regiao);
+        func1.setDpto(dpto);
 
         dao.insert(func1);
         System.out.println("-");
@@ -72,6 +80,16 @@ public class FuncionarioOpcoes {
         System.out.print("Digite o SALÁRIO: ");
         Float NovoSalario = entradaUpdateFloat.nextFloat();
         func1.setSalario(NovoSalario);
+        
+        daoR.getAll();
+        System.out.print("Digite a REGIÃO: ");
+        int NovaRegiao = entradaInts.nextInt();
+        func1.setSalario(NovaRegiao);
+        
+        daoD.getAll();
+        System.out.print("Digite o DEPARTAMENTO: ");
+        int NovoDpto = entradaInts.nextInt();
+        func1.setSalario(NovoDpto);
         
     	dao.update(func1);
     }

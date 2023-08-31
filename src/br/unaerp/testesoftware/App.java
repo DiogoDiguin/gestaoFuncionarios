@@ -121,13 +121,14 @@ public class App {
 			    	break;//Fim PAÍSES
 			    	
 			    case 3:
-			    	while (opcaoOperacao <= 4){
+			    	while (opcaoOperacao <= 5){
 			    		System.out.println("\nLOCAIS");
 			    		System.out.println("===== MENU =====");
 					    System.out.println("1 - INCLUIR LOCAL");
 					    System.out.println("2 - EXIBIR TODOS OS LOCAIS");
 					    System.out.println("3 - ATUALIZAR LOCAL");
 					    System.out.println("4 - APAGAR LOCAL");
+					    System.out.println("5 - LISTAR FUNCIONÁRIOS DOS DEPARTAMENTOS");
 					    System.out.print("Digite uma opção: ");
 					    opcaoOperacao = scannerOperacao.nextInt();
 					    	if(opcaoOperacao == 0) {
@@ -145,6 +146,9 @@ public class App {
 						            break;
 						        case 4:
 						        	LocalOpcoes.deleteLocal();
+						            break;
+						        case 5:
+						        	LocalOpcoes.listarFuncionarios();
 						            break;
 						        default:
 						            System.out.println("Opção inválida. Digite novamente.");
