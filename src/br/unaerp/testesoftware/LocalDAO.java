@@ -7,17 +7,17 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class LocalDAO {
-    private Connection connection;
+    //private Connection connection;
 
     PaisDAO daoP = ApplicationContext.getPaisDAO();
 
     Scanner scannerPais = new Scanner(System.in);
     Scanner entradaDpto = new Scanner(System.in);
 
-    public LocalDAO() {
+    /*public LocalDAO() {
         new ConnectionFactory();
 		this.connection = ConnectionFactory.getConnection();
-    }
+    }*/
 
     public void insert(Local l) {
         int idPais = l.getPais().getIdPais();
@@ -26,7 +26,10 @@ public class LocalDAO {
                 + " values (?, ?, ?, ?, ?)";
 
         try {
-            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            try (
+            	Connection connection = ConnectionFactory.getConnection();
+            	PreparedStatement stmt = connection.prepareStatement(sql)) 
+            {
                 stmt.setString(1, l.getEnderecoRua());
                 stmt.setString(2, l.getCodigoPostal());
                 stmt.setString(3, l.getCidade());
@@ -45,8 +48,11 @@ public class LocalDAO {
                 "JOIN t_pais p ON l.pais = p.idPais " +
                 "ORDER BY l.idLocal ASC";
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+        try (
+        	Connection connection = ConnectionFactory.getConnection();
+        	PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) 
+        {
 
             System.out.printf("%-10s %-20s %-20s %-20s %-20s %-20s\n", "ID", "ENDEREÇO", "CÓDIGO",
                     "CIDADE", "ESTADO", "PAÍS");
@@ -74,7 +80,10 @@ public class LocalDAO {
         String sql = "update t_local set enderecoRua=?, codigoPostal=?, cidade=?, estadoProvincia=?, pais=?"
                 + " where idLocal=?";
         try {
-            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            try (
+                Connection connection = ConnectionFactory.getConnection();
+            	PreparedStatement stmt = connection.prepareStatement(sql)) 
+            {
                 stmt.setString(1, l.getEnderecoRua());
                 stmt.setString(2, l.getCodigoPostal());
                 stmt.setString(3, l.getCidade());
@@ -90,7 +99,10 @@ public class LocalDAO {
 
     public void delete(Local l) {
         try {
-            try (PreparedStatement stmt = connection.prepareStatement("delete from t_local where idLocal=?")) {
+            try (
+                Connection connection = ConnectionFactory.getConnection();
+                PreparedStatement stmt = connection.prepareStatement("delete from t_local where idLocal=?")) 
+            {
                 stmt.setLong(1, l.getIdLocal());
                 stmt.execute();
             }
@@ -100,13 +112,18 @@ public class LocalDAO {
     }
 
     public ResultSet listarFuncionarios(Local l) {
+        Scanner entradaInt = new Scanner(System.in);
+        
+        // Primeira consulta para listar os departamentos do local
         String sql = "select * from t_departamento where local=?";
-
+        
         try {
-            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            try (
+                Connection connection = ConnectionFactory.getConnection();
+                PreparedStatement stmt = connection.prepareStatement(sql)) 
+            {
                 stmt.setInt(1, l.getIdLocal()); // Define o valor do parâmetro
                 try (ResultSet rs = stmt.executeQuery()) {
-
                     if (!rs.next()) {
                         System.out.println("Nenhum departamento encontrado.");
                     } else {
@@ -120,7 +137,58 @@ public class LocalDAO {
                             System.out.println(linha);
                         } while (rs.next());
 
-                        // Restante do código...
+                        // Solicitar o ID do departamento ao usuário
+                        System.out.print("ID DEPARTAMENTO: ");
+                        int idDpto = entradaInt.nextInt();
+                        
+                        // Segunda consulta para listar os funcionários do departamento
+                        String sqlFuncionario = "select * from t_funcionario where departamento=?";
+                        String sqlGerente = "SELECT f.idFuncionario, f.primeiroNome, f.ultimoNome, f.salario FROM t_departamento d JOIN t_funcionario f ON d.gerente "
+                        		+ "= f.idFuncionario WHERE d.idDpto=?";
+                        try (
+                        	PreparedStatement stmtGerente = connection.prepareStatement(sqlGerente);
+                        	PreparedStatement stmtFunc = connection.prepareStatement(sqlFuncionario)
+                        ) {
+                        	stmtGerente.setInt(1, idDpto);
+                            stmtFunc.setInt(1, idDpto); // Define o ID do departamento
+                            try (
+                            	ResultSet rsGerente = stmtGerente.executeQuery();
+                            	ResultSet rsFuncionario = stmtFunc.executeQuery()) 
+                            {
+                            	if (!rsGerente.next()) {
+                                    System.out.println("Nenhum gerente encontrado neste departamento.");
+                                } else {
+                                    System.out.printf("\nGERENTE: ");
+
+                                    do {
+                                        String primeiroNome = rsGerente.getString("primeiroNome");
+                                        String ultimoNome = rsGerente.getString("ultimoNome");
+
+                                        String linhaGerente = String.format("%-15s %-15s", primeiroNome, ultimoNome);
+                                        System.out.println(linhaGerente);
+                                    } while (rsGerente.next());
+                                }
+                            	
+                                if (!rsFuncionario.next()) {
+                                    System.out.println("Nenhum funcionário encontrado neste departamento.");
+                                } else {
+                                    System.out.printf("\n%-10s %-20s %-20s %-10s\n", "ID", "1º NOME", "2º NOME", "SALÁRIO");
+
+                                    do {
+                                        int idFuncionario = rsFuncionario.getInt("idFuncionario");
+                                        String primeiroNome = rsFuncionario.getString("primeiroNome");
+                                        String ultimoNome = rsFuncionario.getString("ultimoNome");
+                                        double salario = rsFuncionario.getDouble("salario");
+
+                                        String linhaFuncionario = String.format("%-10s %-20s %-20s %-10s",
+                                                idFuncionario, primeiroNome, ultimoNome, salario);
+                                        System.out.println(linhaFuncionario);
+                                    } while (rsFuncionario.next());
+                                }
+                            }
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -129,4 +197,5 @@ public class LocalDAO {
         }
         return null;
     }
+
 }

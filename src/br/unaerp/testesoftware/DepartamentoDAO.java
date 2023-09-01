@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class DepartamentoDAO {
-    private Connection connection;
+    /*private Connection connection;*/
 
     FuncionarioDAO daoF = ApplicationContext.getFuncionarioDAO();
     LocalDAO daoL = ApplicationContext.getLocalDAO();
@@ -15,10 +15,10 @@ public class DepartamentoDAO {
     Scanner scannerPais = new Scanner(System.in);
     int opcaoOperacao = 0;
 
-    public DepartamentoDAO() {
+    /*public DepartamentoDAO() {
         new ConnectionFactory();
 		this.connection = ConnectionFactory.getConnection();
-    }
+    }*/
 
     public void insert(Departamento d) {
         //daoR.getAll();
@@ -29,7 +29,10 @@ public class DepartamentoDAO {
         String sql = "insert into t_departamento (nomeDpto, gerente, local)"
                 + " values (?, ?, ?)";
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (
+        	Connection connection = ConnectionFactory.getConnection();
+        	PreparedStatement stmt = connection.prepareStatement(sql)) 
+        {
             stmt.setString(1, d.getNomeDpto());
             stmt.setInt(2, idGerente);
             stmt.setInt(3, idLocal);
@@ -47,10 +50,13 @@ public class DepartamentoDAO {
                 "JOIN t_local l ON d.local = l.idLocal " +
                 "ORDER BY d.idDpto ASC";
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+        try (
+        	Connection connection = ConnectionFactory.getConnection();
+        	PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) 
+        {
 
-            System.out.printf("%-10s %-20s %-20s %-20s %-20s %-20s %-20s\n", "ID", "NOME", "NOME GERENTE", "NOME GERENTE",
+            System.out.printf("%-10s %-20s %-20s %-20s %-20s %-20s %-20s\n", "ID", "NOME", "1º NOME GERENTE", "2º NOME",
                     "ENDEREÇO", "CIDADE", "ESTADO");
 
             while (rs.next()) {
@@ -76,7 +82,10 @@ public class DepartamentoDAO {
     public void update(Departamento d) {
         String sql = "update t_departamento set nomeDpto=?, gerente=?, local=?"
                 + " where idDpto=?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (
+        	Connection connection = ConnectionFactory.getConnection();
+        	PreparedStatement stmt = connection.prepareStatement(sql)) 
+        {
             stmt.setString(1, d.getNomeDpto());
             stmt.setInt(2, d.getGerente().getIdFuncionario());
             stmt.setInt(3, d.getLocal().getIdLocal());
@@ -88,7 +97,9 @@ public class DepartamentoDAO {
     }
 
     public void delete(Departamento d) {
-        try (PreparedStatement stmt = connection.prepareStatement("delete from t_departamento where idDpto=?")) {
+        try (Connection connection = ConnectionFactory.getConnection();
+        	PreparedStatement stmt = connection.prepareStatement("delete from t_departamento where idDpto=?")) 
+        {
             stmt.setLong(1, d.getIdDpto());
             stmt.execute();
         } catch (SQLException e) {

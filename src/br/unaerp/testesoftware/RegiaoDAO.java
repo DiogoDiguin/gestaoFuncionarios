@@ -58,9 +58,15 @@ public class RegiaoDAO {
     }
 	
     public void delete(Regiao r) {
-        try (PreparedStatement stmt = connection.prepareStatement("delete from t_regiao where idRegiao=?")) {
-            stmt.setLong(1, r.getId());
-            stmt.execute();
+        try (
+        	PreparedStatement stmtUpdatePais = connection.prepareStatement("update t_pais set regiao=1 where regiao=?");
+            PreparedStatement stmtDeleteRegiao = connection.prepareStatement("delete from t_regiao where idRegiao=?");
+        ) {
+        	stmtUpdatePais.setLong(1, r.getId());
+            stmtUpdatePais.execute();
+            
+            stmtDeleteRegiao.setLong(1, r.getId());
+            stmtDeleteRegiao.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -68,7 +74,7 @@ public class RegiaoDAO {
 	
     public ResultSet mediaSalarial() {
         String sql = "SELECT r.nomeRegiao, AVG(rf.salario) AS mediaSalarial"
-                + " FROM t_regiaofuncionarios rf"
+                + " FROM t_regiaofuncionario rf"
                 + " JOIN t_regiao r ON rf.idRegiao = r.idRegiao"
                 + " GROUP BY r.idRegiao;";
 

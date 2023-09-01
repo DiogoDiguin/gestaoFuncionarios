@@ -7,17 +7,17 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class PaisDAO {
-    private Connection connection;
+    /*private Connection connection;*/
 
     RegiaoDAO daoR = ApplicationContext.getRegiaoDAO();
 
     Scanner scannerRegiao = new Scanner(System.in);
     int opcaoOperacao = 0;
 
-    public PaisDAO() {
+    /*public PaisDAO() {
         new ConnectionFactory();
 		this.connection = ConnectionFactory.getConnection();
-    }
+    }*/
 
     public void insert(Pais p) {
         //daoR.getAll();
@@ -27,7 +27,10 @@ public class PaisDAO {
 
         String sql = "insert into t_pais (nomePais, regiao) values (?, ?)";
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (
+            Connection connection = ConnectionFactory.getConnection();
+        	PreparedStatement stmt = connection.prepareStatement(sql)) 
+        {
             stmt.setString(1, p.getNomePais());
             stmt.setLong(2, idRegiao);  // Usar o id da região
 
@@ -43,8 +46,11 @@ public class PaisDAO {
                 "JOIN t_regiao r ON p.regiao = r.idRegiao " +
                 "ORDER BY p.idPais ASC";
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+        try (
+            Connection connection = ConnectionFactory.getConnection();
+        	PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) 
+        {
 
             System.out.printf("%-10s %-20s %-20s \n", "ID", "NOME", "REGIÃO");
 
@@ -65,7 +71,10 @@ public class PaisDAO {
 
     public void update(Pais p) {
         String sql = "update t_pais set nomePais=?, regiao=? where idPais=?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (
+            Connection connection = ConnectionFactory.getConnection();
+        	PreparedStatement stmt = connection.prepareStatement(sql)) 
+        {
             stmt.setString(1, p.getNomePais());
             stmt.setLong(2, p.getRegiao().getId());  // Usar o ID da região
             stmt.setInt(3, p.getIdPais());  // Supondo que getIdPais() retorna o ID do país
@@ -76,7 +85,10 @@ public class PaisDAO {
     }
 
     public void delete(Pais p) {
-        try (PreparedStatement stmt = connection.prepareStatement("delete from t_pais where idPais=?")) {
+        try (
+            Connection connection = ConnectionFactory.getConnection();
+        	PreparedStatement stmt = connection.prepareStatement("delete from t_pais where idPais=?"))
+        {	
             stmt.setLong(1, p.getIdPais());
             stmt.execute();
         } catch (SQLException e) {
@@ -97,8 +109,11 @@ public class PaisDAO {
                 + "JOIN t_departamento d ON l.idLocal = d.local "
                 + "ORDER BY p.nomePais, d.nomeDpto;";
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+        try (
+            Connection connection = ConnectionFactory.getConnection();
+        	PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) 
+        {
 
             System.out.printf("%-25s %-25s\n", "PAÍS", "DEPARTAMENTO");
 
