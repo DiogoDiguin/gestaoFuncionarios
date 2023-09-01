@@ -86,11 +86,15 @@ public class PaisDAO {
 
     public void delete(Pais p) {
         try (
-            Connection connection = ConnectionFactory.getConnection();
-        	PreparedStatement stmt = connection.prepareStatement("delete from t_pais where idPais=?"))
+        	Connection connection = ConnectionFactory.getConnection();
+            PreparedStatement stmtUpdateLocal = connection.prepareStatement("update t_local set pais=1 where pais=?");        		
+        	PreparedStatement stmtDeletePais = connection.prepareStatement("delete from t_pais where idPais=?"))
         {	
-            stmt.setLong(1, p.getIdPais());
-            stmt.execute();
+        	stmtUpdateLocal.setLong(1, p.getIdPais());
+        	stmtUpdateLocal.execute();
+            
+            stmtDeletePais.setLong(1, p.getIdPais());
+            stmtDeletePais.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

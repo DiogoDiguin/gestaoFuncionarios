@@ -3,6 +3,7 @@ package br.unaerp.testesoftware;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+//import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -75,6 +76,50 @@ public class LocalDAO {
         }
         return null;
     }
+    
+    /*public void getAll() {
+        String sql = "SELECT " +
+                     "l.idLocal AS \"ID\", " +
+                     "l.enderecoRua AS \"Endereço\", " +
+                     "l.codigoPostal AS \"Código\", " +
+                     "l.cidade AS \"Cidade\", " +
+                     "l.estadoProvincia AS \"Estado\", " +
+                     "p.nomePais AS \"País\" " +
+                     "FROM t_local l " +
+                     "JOIN t_pais p ON l.pais = p.idPais " +
+                     "ORDER BY l.idLocal ASC";
+
+        try (
+            Connection connection = ConnectionFactory.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()
+        ) {
+        	ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+
+            // Imprimir os cabeçalhos das colunas
+            for (int i = 1; i <= columnCount; i++) {
+                System.out.printf("|%-25s", metaData.getColumnLabel(i));
+            }
+            System.out.println("|");
+
+            // Imprimir os dados
+            while (rs.next()) {
+                for (int i = 1; i <= columnCount; i++) {
+                    String value = rs.getString(i);
+                    if (value == null) {
+                        value = ""; // Converter "null" para uma string vazia
+                    }
+                    System.out.printf("|%-25s", value);
+                }
+                System.out.println("|");
+            }
+
+            System.out.printf("%n");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }*/
 
     public void update(Local l) {
         String sql = "update t_local set enderecoRua=?, codigoPostal=?, cidade=?, estadoProvincia=?, pais=?"
@@ -195,6 +240,8 @@ public class LocalDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+        entradaInt.close();
         return null;
     }
 

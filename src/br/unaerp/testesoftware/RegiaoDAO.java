@@ -59,6 +59,7 @@ public class RegiaoDAO {
 	
     public void delete(Regiao r) {
         try (
+        	Connection connection = ConnectionFactory.getConnection();
         	PreparedStatement stmtUpdatePais = connection.prepareStatement("update t_pais set regiao=1 where regiao=?");
             PreparedStatement stmtDeleteRegiao = connection.prepareStatement("delete from t_regiao where idRegiao=?");
         ) {

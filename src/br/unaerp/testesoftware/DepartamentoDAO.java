@@ -3,6 +3,7 @@ package br.unaerp.testesoftware;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+//import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -56,7 +57,7 @@ public class DepartamentoDAO {
             ResultSet rs = stmt.executeQuery()) 
         {
 
-            System.out.printf("%-10s %-20s %-20s %-20s %-20s %-20s %-20s\n", "ID", "NOME", "1º NOME GERENTE", "2º NOME",
+            System.out.printf("%-10s %-30s %-20s %-20s %-20s %-20s %-20s\n", "ID", "NOME", "1º NOME GERENTE", "2º NOME",
                     "ENDEREÇO", "CIDADE", "ESTADO");
 
             while (rs.next()) {
@@ -67,8 +68,12 @@ public class DepartamentoDAO {
                 String enderecoRua = rs.getString("enderecoRua");
                 String cidade = rs.getString("cidade");
                 String estadoProvincia = rs.getString("estadoProvincia");
+                
+                if (ultimoNome == null) {
+                	ultimoNome = "";
+                }
 
-                String linha = String.format("%-10s %-20s %-20s %-20s %-20s %-20s %-20s", id, nomeDpto, primeiroNome,
+                String linha = String.format("%-10s %-30s %-20s %-20s %-20s %-20s %-20s", id, nomeDpto, primeiroNome,
                         ultimoNome, enderecoRua, cidade, estadoProvincia);
                 System.out.println(linha);
             }
@@ -78,6 +83,47 @@ public class DepartamentoDAO {
         }
         return null;
     }
+    
+    /*public void getAll() { // SELECT
+        String sql = "SELECT d.idDpto AS \"ID\", d.nomeDpto AS \"NOME\", f.primeiroNome AS \"1º NOME GERENTE\", " +
+                "f.ultimoNome AS \"2º NOME\", l.enderecoRua AS \"ENDEREÇO\", l.cidade AS \"CIDADE\", " +
+                "l.estadoProvincia AS \"ESTADO\" " +
+                "FROM t_departamento d " +
+                "JOIN t_funcionario f ON d.gerente = f.idFuncionario " +
+                "JOIN t_local l ON d.local = l.idLocal " +
+                "ORDER BY d.idDpto ASC";
+
+        try (
+            Connection connection = ConnectionFactory.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) 
+        {
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+
+            // Imprimir os cabeçalhos das colunas
+            for (int i = 1; i <= columnCount; i++) {
+                System.out.printf("|%-25s", metaData.getColumnLabel(i));
+            }
+            System.out.println("|");
+
+            // Imprimir os dados
+            while (rs.next()) {
+                for (int i = 1; i <= columnCount; i++) {
+                    String value = rs.getString(i);
+                    if (value == null) {
+                        value = ""; // Converter "null" para uma string vazia
+                    }
+                    System.out.printf("|%-25s", value);
+                }
+                System.out.println("|");
+            }
+
+            System.out.printf("%n");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }*/
 
     public void update(Departamento d) {
         String sql = "update t_departamento set nomeDpto=?, gerente=?, local=?"

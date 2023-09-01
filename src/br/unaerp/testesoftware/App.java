@@ -8,8 +8,6 @@ import br.unaerp.testesoftware.ResultSetPrinter;*/
 import java.sql.SQLException;
 import java.util.Scanner;
 
-
-
 public class App {
 
 	public static void main(String[] args) throws SQLException {
@@ -198,41 +196,7 @@ public class App {
 			    	break;//Fim DEPARTAMENTOS
 			    	
 			    case 5:	
-			    		while (opcaoOperacao <= 5){
-			    		System.out.println("\nFUNCIONÁRIOS");
-			    		System.out.println("===== MENU =====");
-					    System.out.println("1 - INCLUIR FUNCIONÁRIO");
-					    System.out.println("2 - EXIBIR TODOS OS FUNCIONÁRIOS");
-					    System.out.println("3 - ATUALIZAR FUNCIONÁRIO");
-					    System.out.println("4 - APAGAR FUNCIONÁRIO");
-					    System.out.println("5 - REDEFINIR SALÁRIO");
-					    System.out.print("Digite uma opção: ");
-					    opcaoOperacao = scannerOperacao.nextInt();
-					    	if(opcaoOperacao == 0) {
-					    		break;
-					    	}else {
-					    		switch (opcaoOperacao) {
-							    case 1:
-							    	FuncionarioOpcoes.operacoesFuncionario(opcaoOperacao);
-						            break;
-						        case 2:
-						        	FuncionarioOpcoes.operacoesFuncionario(opcaoOperacao);
-						            break;
-						        case 3:
-						        	FuncionarioOpcoes.operacoesFuncionario(opcaoOperacao);
-						            break;
-						        case 4:
-						        	FuncionarioOpcoes.operacoesFuncionario(opcaoOperacao);
-						            break;
-						        case 5:
-						        	FuncionarioOpcoes.operacoesFuncionario(opcaoOperacao);
-						            break;
-						        default:
-						            System.out.println("Opção inválida. Digite novamente.");
-						            break;
-					    		}
-					    	}
-			    		}
+			    		FuncionarioOpcoes.operacoesFuncionario();
 			    	break;//Fim FUNCIONÁRIOS
 			    				    
 			    }//Final SWITCH das opções INTERNAS DO MENU

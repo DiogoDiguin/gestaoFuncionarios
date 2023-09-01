@@ -13,7 +13,7 @@ public class ResultSetPrinter {
 
         // Determine the column widths and column names
         for (int i = 1; i <= columnCount; i++) {
-            String columnName = metaData.getColumnName(i);
+        	String columnName = metaData.getColumnLabel(i); // Use getColumnLabel para obter o alias
             columnNames[i - 1] = columnName;
             columnWidths[i - 1] = columnName.length();
 
@@ -67,6 +67,9 @@ public class ResultSetPrinter {
     }
 
     private static void printCentered(String s, int width) {
+        if (s == null) {
+            s = ""; // Define a string como vazia se for nula
+        }
         int padding = width - s.length();
         int leftPadding = padding / 2;
         int rightPadding = padding - leftPadding;
@@ -78,4 +81,5 @@ public class ResultSetPrinter {
             System.out.print(" ");
         }
     }
+
 }

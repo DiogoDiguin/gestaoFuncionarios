@@ -81,6 +81,26 @@ public class FuncionarioDAO {
         }
         return null;
     }
+    
+    /*public void getAll() { // SELECT
+        String sql = "SELECT idFuncionario AS \"ID\", primeiroNome AS \"Primeiro Nome\", ultimoNome AS \"Último Nome\", salario AS \"Salário R$\" FROM t_funcionario";
+
+        try (
+            Connection connection = ConnectionFactory.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) 
+        {
+            ResultSetPrinter printer = new ResultSetPrinter(); // Instancie a classe ResultSetPrinter
+
+            //System.out.printf("%-10s %-20s %-20s %-20s\n", "ID", "1º Nome", "2º Nome", "Salário R$");
+            
+            printer.printResultSet(rs); // Use o método printResultSet para formatar a saída
+
+            System.out.printf("%n");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }*/
 
     public void update(Funcionario funcionario) {
         String sql = "update t_funcionario set primeiroNome=?, ultimoNome=?, salario=?, departamento=? where idFuncionario=?";
