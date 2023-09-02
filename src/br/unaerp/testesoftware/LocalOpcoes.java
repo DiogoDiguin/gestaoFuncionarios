@@ -14,7 +14,48 @@ public class LocalOpcoes {
     static Scanner entradaIdUpdate = new Scanner(System.in);
     static Scanner entradaUpdateStrings = new Scanner(System.in);
     static Scanner entradaIdDelete = new Scanner(System.in);
-
+    
+    public static void operacoesLocal() {
+    	Scanner scannerOperacao = new Scanner(System.in);
+    	int opcaoOperacao = 0;
+    		
+	    while (opcaoOperacao <= 5){
+			System.out.println("\nLOCAIS");
+			System.out.println("===== MENU =====");
+		    System.out.println("1 - INCLUIR LOCAL");
+		    System.out.println("2 - EXIBIR TODOS OS LOCAIS");
+		    System.out.println("3 - ATUALIZAR LOCAL");
+		    System.out.println("4 - APAGAR LOCAL");
+		    System.out.println("5 - LISTAR FUNCIONÁRIOS DOS DEPARTAMENTOS");
+		    System.out.print("Digite uma opção: ");
+		    opcaoOperacao = scannerOperacao.nextInt();
+		    	if(opcaoOperacao == 0) {
+		    		break;
+		    	}else {
+		    		switch (opcaoOperacao) {
+				    case 1:
+				    	LocalOpcoes.incluirLocal();
+			            break;
+			        case 2:
+			        	LocalOpcoes.exibirLocais();
+			            break;
+			        case 3:
+			        	LocalOpcoes.updateLocal();
+			            break;
+			        case 4:
+			        	LocalOpcoes.deleteLocal();
+			            break;
+			        case 5:
+			        	LocalOpcoes.listarFuncionarios();
+			            break;
+			        default:
+			            System.out.println("Opção inválida. Digite novamente.");
+			            break;
+		    		}
+		    	}
+		}
+    }
+    
     public static void incluirLocal() {
         System.out.printf("%n");
         System.out.println("1 - INCLUIR LOCAL");

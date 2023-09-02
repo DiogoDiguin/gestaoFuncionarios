@@ -18,6 +18,43 @@ public class DepartamentoOpcoes {
     static Scanner entradaUpdateStrings = new Scanner(System.in);
     static Scanner entradaIdDelete = new Scanner(System.in);
 
+    public static void operacoesDepartamento() {
+    	Scanner scannerOperacao = new Scanner(System.in);
+    	int opcaoOperacao = 0;
+    	
+	    while (opcaoOperacao <= 4){
+			System.out.println("\nDEPARTAMENTOS");
+			System.out.println("===== MENU =====");
+		    System.out.println("1 - INCLUIR DEPARTAMENTO");
+		    System.out.println("2 - EXIBIR TODOS OS DEPARTAMENTOS");
+		    System.out.println("3 - ATUALIZAR DEPARTAMENTO");
+		    System.out.println("4 - APAGAR DEPARTAMENTO");
+		    System.out.print("Digite uma opção: ");
+		    opcaoOperacao = scannerOperacao.nextInt();
+		    	if(opcaoOperacao == 0) {
+		    		break;
+		    	}else {
+		    		switch (opcaoOperacao) {
+				    case 1:
+				    	DepartamentoOpcoes.incluirDepartamento();
+			            break;
+			        case 2:
+			        	DepartamentoOpcoes.exibirDepartamentos();
+			            break;
+			        case 3:
+			        	DepartamentoOpcoes.updateDepartamento();
+			            break;
+			        case 4:
+			        	DepartamentoOpcoes.deleteDepartamento();
+			            break;
+			        default:
+			            System.out.println("Opção inválida. Digite novamente.");
+			            break;
+		    		}
+		    	}
+		}
+    }
+    
     public static void incluirDepartamento() {
         System.out.printf("%n");
         System.out.println("1 - INCLUIR DEPARTAMENTO");

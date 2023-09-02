@@ -14,6 +14,47 @@ public class PaisOpcoes {
     static Scanner entradaUpdateStrings = new Scanner(System.in);
     static Scanner entradaIdDelete = new Scanner(System.in);
 
+    public static void operacoesPais() {
+    	Scanner scannerOperacao = new Scanner(System.in);
+    	int opcaoOperacao = 0;
+    	
+	    while (opcaoOperacao <= 5){
+			System.out.println("\nPAÍSES");
+			System.out.println("===== MENU =====");
+		    System.out.println("1 - INCLUIR PAÍS");
+		    System.out.println("2 - EXIBIR TODOS OS PAÍSES");
+		    System.out.println("3 - ATUALIZAR PAÍS");
+		    System.out.println("4 - APAGAR PAÍS");
+		    System.out.println("5 - EXIBIR DEPARTAMENTOS POR PAÍS");
+		    System.out.print("Digite uma opção: ");
+		    opcaoOperacao = scannerOperacao.nextInt();
+			    if(opcaoOperacao == 0) {
+		    		break;
+		    	}else {
+		    		switch (opcaoOperacao) {
+				    case 1:	            	
+				    	PaisOpcoes.incluirPais();
+			            break;
+			        case 2:
+			        	PaisOpcoes.exibirPaises();
+			            break;
+			        case 3:
+			        	PaisOpcoes.updatePais();
+			            break;
+			        case 4:
+			        	PaisOpcoes.deletePais();
+			            break;
+			        case 5:
+			        	PaisOpcoes.departamentosPais();
+			            break;
+			        default:
+			            System.out.println("Opção inválida. Digite novamente.");
+			            break;
+		    		}
+		    	}
+		}
+    }
+    
     public static void incluirPais() {
         System.out.printf("%n");
         System.out.println("1 - INCLUIR PAÍS");

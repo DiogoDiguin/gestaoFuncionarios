@@ -14,6 +14,47 @@ public class RegiaoOpcoes {
 	static Scanner entradaUpdateStrings = new Scanner(System.in);
 	static Scanner entradaIdDelete = new Scanner(System.in);
 	
+	public static void operacoesRegiao() {
+		Scanner scannerOperacao = new Scanner(System.in);
+    	int opcaoOperacao = 0;
+    	
+		while (opcaoOperacao <= 5){
+			System.out.println("\nREGIÕES");
+			System.out.println("===== MENU =====");
+		    System.out.println("1 - INCLUIR REGIÃO");
+		    System.out.println("2 - EXIBIR TODAS AS REGIÕES");
+		    System.out.println("3 - ATUALIZAR REGIÃO");
+		    System.out.println("4 - APAGAR REGIÃO");
+		    System.out.println("5 - MÉDIA SALARIAL POR REGIÃO");
+		    System.out.print("Digite uma opção: ");
+		    opcaoOperacao = scannerOperacao.nextInt();
+			    if(opcaoOperacao == 0) {
+		    		break;
+		    	}else {
+		    		switch (opcaoOperacao) {
+				    case 1:	            	
+				    	RegiaoOpcoes.incluirRegiao();
+			            break;
+			        case 2:
+			        	RegiaoOpcoes.exibirRegioes();
+			            break;
+			        case 3:
+			        	RegiaoOpcoes.updateRegiao();
+			            break;
+			        case 4:
+			        	RegiaoOpcoes.deleteRegiao();
+			            break;
+			        case 5:
+			        	RegiaoOpcoes.calcularMediaSalarial();
+			            break;
+			        default:
+			            System.out.println("Opção inválida. Digite novamente.");
+			            break;
+		    		}
+		    	}
+			}
+	}
+	
 	public static void incluirRegiao() {
 		System.out.printf("%n");
     	System.out.println("1 - INCLUIR REGIÃO");

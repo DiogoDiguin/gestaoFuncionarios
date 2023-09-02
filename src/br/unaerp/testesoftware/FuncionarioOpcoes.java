@@ -22,19 +22,20 @@ public class FuncionarioOpcoes {
     static Scanner entradaInts = new Scanner(System.in);
 
     public static void operacoesFuncionario() {
-    	Scanner scannerOpcao = new Scanner(System.in);
+    	Scanner scannerOperacao = new Scanner(System.in);
     	int opcaoOperacao = 0;
     	
-    	while (opcaoOperacao <= 5){
+    	while (opcaoOperacao <= 6){
     		System.out.println("\nFUNCIONÁRIOS");
     		System.out.println("===== MENU =====");
 		    System.out.println("1 - INCLUIR FUNCIONÁRIO");
 		    System.out.println("2 - EXIBIR TODOS OS FUNCIONÁRIOS");
-		    System.out.println("3 - ATUALIZAR FUNCIONÁRIO");
-		    System.out.println("4 - APAGAR FUNCIONÁRIO");
-		    System.out.println("5 - REDEFINIR SALÁRIO");
+		    System.out.println("3 - EXIBIR INFORMAÇÕES DE UM FUNCIONÁRIO");
+		    System.out.println("4 - ATUALIZAR FUNCIONÁRIO");
+		    System.out.println("5 - APAGAR FUNCIONÁRIO");
+		    System.out.println("6 - REDEFINIR SALÁRIO");
 		    System.out.print("Digite uma opção: ");
-		    opcaoOperacao = scannerOpcao.nextInt();
+		    opcaoOperacao = scannerOperacao.nextInt();
 		    	if(opcaoOperacao == 0) {
 		    		break;
 		    	}else {
@@ -46,12 +47,15 @@ public class FuncionarioOpcoes {
 			            	exibirFuncionario();
 			                break;
 			            case 3:
-			            	updateFuncionario();
+			            	exibirFuncionarioEspecfico();
 			                break;
 			            case 4:
-			            	deleteFuncionario();
+			            	updateFuncionario();
 			                break;
 			            case 5:
+			            	deleteFuncionario();
+			                break;
+			            case 6:
 			            	recalcSalario();
 			                break;
 			            default:
@@ -60,7 +64,7 @@ public class FuncionarioOpcoes {
 			        }
 		    	}
     	}
-    	scannerOpcao.close();
+    	//scannerOpcao.close();
     }
     
     public static void incluirFuncionario() {
@@ -99,6 +103,20 @@ public class FuncionarioOpcoes {
         System.out.println("2 - EXIBIR TODOS OS FUNCIONÁRIOS");
 
         dao.getAll();
+    }
+    
+    public static void exibirFuncionarioEspecfico() {
+    	System.out.printf("%n");
+        System.out.println("3 - EXIBIR INFORMAÇÕES DE UM FUNCIONÁRIO");
+
+        dao.getAll();
+        
+        System.out.print("Digite o ID: ");
+        int id = entradaInts.nextInt();
+        func1.setIdFuncionario(id);
+        
+        dao.getSpecify(func1);
+        System.out.println("-");
     }
     
     public static void updateFuncionario() {
