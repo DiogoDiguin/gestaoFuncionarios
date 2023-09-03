@@ -75,7 +75,7 @@ public class FuncionarioDAO {
                 String linha = String.format("%-10d %-20s %-20s %-20s", id, Pnome, Unome, salario);
                 System.out.println(linha);
             }
-            System.out.printf("%n");
+            //System.out.printf("%n");
         } catch (SQLException e) {
             e.printStackTrace();
         }

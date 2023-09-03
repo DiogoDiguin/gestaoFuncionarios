@@ -62,7 +62,7 @@ public class PaisDAO {
                 String linha = String.format("%-10d %-20s %-20s", id, nomePais, nomeRegiao);
                 System.out.println(linha);
             }
-            System.out.printf("%n");
+            //System.out.printf("%n");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -128,7 +128,7 @@ public class PaisDAO {
                 String linha = String.format("%-25s %-25s", nomePais, nomeDpto);
                 System.out.println(linha);
             }
-            System.out.printf("%n");
+            //System.out.printf("%n");
         } catch (SQLException e) {
             e.printStackTrace();
         }

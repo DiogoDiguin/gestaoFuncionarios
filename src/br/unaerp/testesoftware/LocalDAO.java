@@ -70,7 +70,7 @@ public class LocalDAO {
                         cidade, estadoProvincia, nomePais);
                 System.out.println(linha);
             }
-            System.out.printf("%n");
+            //System.out.printf("%n");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -241,7 +241,7 @@ public class LocalDAO {
             e.printStackTrace();
         }
         
-        entradaInt.close();
+        //entradaInt.close();
         return null;
     }
 

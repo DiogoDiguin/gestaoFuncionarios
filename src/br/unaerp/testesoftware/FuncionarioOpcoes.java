@@ -80,10 +80,12 @@ public class FuncionarioOpcoes {
         System.out.print("Digite o SALÁRIO: ");
         float salario = entradaIncludeFloat.nextFloat();
 
+        System.out.printf("%n");
         daoR.getAll();
         System.out.print("Digite a REGIÃO: ");
         int regiao = entradaInts.nextInt();
 
+        System.out.printf("%n");
         daoD.getAll();
         System.out.print("Digite o DEPARTAMENTO: ");
         int dpto = entradaInts.nextInt();
@@ -140,11 +142,13 @@ public class FuncionarioOpcoes {
         Float NovoSalario = entradaUpdateFloat.nextFloat();
         func1.setSalario(NovoSalario);
 
+        System.out.printf("%n");
         daoR.getAll();
         System.out.print("Digite a REGIÃO: ");
         int NovaRegiao = entradaInts.nextInt();
         func1.setRegiao(NovaRegiao);
 
+        System.out.printf("%n");
         daoD.getAll();
         System.out.print("Digite o DEPARTAMENTO: ");
         int NovoDpto = entradaInts.nextInt();

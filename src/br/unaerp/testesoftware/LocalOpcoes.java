@@ -54,6 +54,7 @@ public class LocalOpcoes {
 		    		}
 		    	}
 		}
+	  //scannerOperacao.close();
     }
     
     public static void incluirLocal() {

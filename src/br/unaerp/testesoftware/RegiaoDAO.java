@@ -39,7 +39,7 @@ public class RegiaoDAO {
                 String linha = String.format("%-10d %-20s", id, nomeRegiao);
                 System.out.println(linha);
             }
-            System.out.printf("%n");
+            //System.out.printf("%n");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -91,7 +91,7 @@ public class RegiaoDAO {
                 String linha = String.format("%-10s %-20s", nome, mediaSalarial);
                 System.out.println(linha);
             }
-            System.out.printf("%n");
+            //System.out.printf("%n");
         } catch (SQLException e) {
             e.printStackTrace();
         }
